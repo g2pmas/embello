@@ -18,6 +18,7 @@
 // a message must contain at least the above byte 0 and 1
 
 #include <stdio.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
@@ -36,9 +37,9 @@
 #define RF_GROUP  42
 #define RF_ID     62
 
-class MyMqtt : public mosquittopp::mosquittopp {
+class MyMqtt : public mosqpp::mosquittopp {
 public:
-    MyMqtt () : mosquittopp::mosquittopp (NAME) { MyMqtt::lib_init(); }
+    MyMqtt () : mosqpp::mosquittopp (NAME) { mosqpp::lib_init(); }
     virtual void on_connect (int rc) { printf("connected %d\n", rc); }
     virtual void on_disconnect () { printf("disconnected\n"); }
     virtual void on_message (const struct mosquitto_message* msg);
@@ -53,8 +54,9 @@ char myTopic [20];
 RF69<SpiDev0> rf;
 
 void MyMqtt::on_message (const struct mosquitto_message* msg) {
-    uint8_t hdr = (msg->payload[0] & 0x3F) | (msg->payload[1] & 0xC0);
-    rf.send(hdr, msg->payload + 2, msg->payloadlen - 2);
+    const uint8_t* payload = (const uint8_t*) msg->payload;
+    uint8_t hdr = (payload[0] & 0x3F) | (payload[1] & 0xC0);
+    rf.send(hdr, payload + 2, msg->payloadlen - 2);
 }
 
 int main () {
