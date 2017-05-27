@@ -1,10 +1,6 @@
 \ frozen application, this runs tests and wipes to a clean slate if they pass
 
-include always.fs
-include board.fs
-include core.fs
 
-compiletoflash
 0 constant DEBUG  \ 0 = send RF packets, 1 = display on serial port
 10 constant RATE  \ seconds between readings
 
@@ -18,7 +14,7 @@ compiletoflash
 
 : send-packet ( vprev vcc tint humi pres temp -- )
   \ 2 <pkt hwid u+> u+> 5 0 do u+> loop pkt>rf ;
-2 <pkt hwid var> var> 5 0 do var> loop pkt>rf ;
+2 <pkt hwid +pkt +pkt 5 0 do +pkt loop pkt>rf ;
 
 : low-power-sleep
   rf-sleep
