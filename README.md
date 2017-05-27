@@ -12,6 +12,7 @@ Acknowledgments
 
 With many thanks for the inspiring discussions and code contributions by:
 
+* James Churchill
 * Thorsten von Eicken
 * Martyn Judd
 * Matthias Koch
@@ -19,5 +20,6 @@ With many thanks for the inspiring discussions and code contributions by:
 * John O'Hare
 * Joris Pragt
 * Frank (SevenW)
+* Matthias Ulrich
 
 -- [jcw](http://jeelabs.org/about/)
