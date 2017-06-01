@@ -146,7 +146,9 @@ int main (int argc, const char** argv) {
 
             mqtt.publish(0, topic, 10+2*len, (const uint8_t*) hex);
         }
-
+	
+	mqtt.loop(1);
         chThdYield();
+	delay(1);
     }
 }
