@@ -5,7 +5,7 @@ include board.fs
 include core.fs
 
 compiletoflash
-include main-bme280.fs
+include main-bm280.fs
 
 \ run tests, even when connected (especially so, in fact!)
 : init init unattended main ;

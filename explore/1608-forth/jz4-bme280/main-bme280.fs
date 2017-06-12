@@ -1,5 +1,6 @@
 \ frozen application, this runs tests and wipes to a clean slate if they pass
 
+compiletoram? [if]  forgetram  [then]
 
 0 constant DEBUG  \ 0 = send RF packets, 1 = display on serial port
 10 constant RATE  \ seconds between readings
@@ -47,10 +48,7 @@
       show-readings cr 1 ms
     else
       \ show-readings cr 1 ms
-      led-on
       send-packet
-      30 ms
-      led-off
     then
   key? until ;
 
